@@ -45,5 +45,3 @@ bool isBiteItself()
 /*hello
 */
 // cout ran
-// cout ran san moi
-// cout ran san moi
