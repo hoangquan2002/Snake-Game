@@ -11,8 +11,6 @@ using namespace std;
 #include <time.h>
 #include <random>
 
-//cccccccccccccccccccccccc
-
  /*
   * MACRO
   */
