@@ -95,4 +95,17 @@ void startGame()
 	}
 }
 
+void resetSnake()
+{
+	score = 0;
+	direction = Direction::right;
+	snake = {
+		Point{ WIDTH / 2 + 2, HEIGHT / 2 },
+		Point{ WIDTH / 2 + 1, HEIGHT / 2 },
+		Point{ WIDTH / 2, HEIGHT / 2 },
+		Point{ WIDTH / 2 - 1, HEIGHT / 2 },
+		Point{ WIDTH / 2 - 2, HEIGHT / 2 }
+	};
+}
+
 
