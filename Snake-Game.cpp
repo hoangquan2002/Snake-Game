@@ -107,5 +107,33 @@ void resetSnake()
 		Point{ WIDTH / 2 - 2, HEIGHT / 2 }
 	};
 }
+// Add function drawBox to draw a box (Snake Box)
+void drawBox()
+{
+	for (size_t i = 0; i < WIDTH; i++)
+		cout << '=';
+	gotoxy(0, HEIGHT);
+	for (size_t i = 0; i < WIDTH; i++)
+		cout << '=';
+	for (size_t i = 1; i < HEIGHT; i++)
+	{
+		gotoxy(0, i);
+		cout << '|';
+	}
+	for (size_t i = 1; i < HEIGHT; i++)
+	{
+		gotoxy(WIDTH, i);
+		cout << '|';
+	}
+}
 
+// Add bite the snake itself logic to the game 
+bool isBiteItself()
+{
+	Point head = snake[0];
+	for (size_t i = 1; i < snake.size(); i++)
+		if (head.x == snake[i].x && head.y == snake[i].y)
+			return true;
+	return false;
+}
 
