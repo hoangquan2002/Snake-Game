@@ -134,3 +134,41 @@ void resetSnake()
 		Point{ WIDTH / 2 - 2, HEIGHT / 2 }
 	};
 }
+
+// Show at the begining of the game
+void showStartMenu()
+{
+	system("cls");
+	cout << "Welcome to snake game!" << endl;
+	cout << "Options:" << endl;
+	cout << "1. Start" << endl;
+	cout << "2. Quit" << endl;
+	cout << "Your choice: ";
+	int option;
+	cin >> option;
+	if (option == 1)
+	{
+		system("cls");
+		cout << "Choose your level (1 - 5): ";
+		int t;
+		cin >> t;
+		speed = 600 - t * 100; // Calculate speed depend on level
+		system("cls");
+		cout << "Tip: While playing game, you can press 'q' to quit";
+		gotoxy(0, 3);
+		cout << "Ready!";
+		Sleep(1000);
+		for (size_t i = 3; i > 0; i--)
+		{
+			gotoxy(0, 3);
+			cout << i << "         ";
+			Sleep(1000);
+		}
+		gotoxy(0, 3);
+		cout << "GO!";
+		Sleep(1000);
+		startGame();
+	}
+	else if (option == 2)
+		exit(1);
+}
