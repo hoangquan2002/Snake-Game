@@ -190,7 +190,15 @@ void startGame()
 		Sleep(speed);
 	}
 }
-
+// Check if the snake hit the wall
+bool isHitWall()
+{
+	return snake[0].x == 0 || snake[0].y == 0 || snake[0].x == WIDTH || snake[0].y == HEIGHT;
+}
+bool isAteApple()
+{
+	return snake[0].x == apple.x && snake[0].y == apple.y;
+}
 void resetSnake()
 {
 	score = 0;
@@ -241,6 +249,7 @@ void showStartMenu()
 	else if (option == 2)
 		exit(1);
 }
+#pragma endregion
 // Add function drawBox to draw a box (Snake Box)
 void drawBox()
 {
@@ -270,3 +279,72 @@ bool isBiteItself()
 			return true;
 	return false;
 }
+
+#pragma region SnakeFunction
+// Draw a part of snake
+void drawSnakePart(Point p)
+{
+	gotoxy(p.x, p.y);
+	cout << BODY;
+}
+// Draw whole snake
+void drawSnake()
+{
+	for (size_t i = 0; i < snake.size(); i++)
+		drawSnakePart(snake[i]);
+}
+
+// move the snake
+void move()
+{
+	prevTail = snake.back();
+	for (size_t i = snake.size() - 1; i > 0; i--)
+		snake[i] = snake[i - 1];
+	if (direction == Direction::up)
+		snake[0].y -= 1;
+	else if (direction == Direction::down)
+		snake[0].y += 1;
+	else if (direction == Direction::left)
+		snake[0].x -= 1;
+	else if (direction == Direction::right)
+		snake[0].x += 1;
+}
+
+// Redraw head & tail to make the snake move
+void drawHeadnTail()
+{
+	gotoxy(snake[0].x, snake[0].y);
+	cout << BODY;
+	gotoxy(prevTail.x, prevTail.y);
+	cout << ' '; // Clear the old tail
+}
+// Growing snake when it ate an apple
+void growing()
+{
+	snake.push_back(prevTail);
+}
+#pragma endregion
+
+#pragma region ConsoleFunction
+// Goto position (x, y)
+void gotoxy(int x, int y)
+{
+	COORD coord;
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(
+		GetStdHandle(STD_OUTPUT_HANDLE),
+		coord
+	);
+}
+
+// Set the visibility of cursor
+void ShowConsoleCursor(bool showFlag)
+{
+	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(out, &cursorInfo);
+	cursorInfo.bVisible = showFlag;
+	SetConsoleCursorInfo(out, &cursorInfo);
+}
+#pragma endregion
