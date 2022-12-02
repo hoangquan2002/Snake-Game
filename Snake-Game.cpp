@@ -195,10 +195,7 @@ bool isHitWall()
 {
 	return snake[0].x == 0 || snake[0].y == 0 || snake[0].x == WIDTH || snake[0].y == HEIGHT;
 }
-bool isAteApple()
-{
-	return snake[0].x == apple.x && snake[0].y == apple.y;
-}
+
 void resetSnake()
 {
 	score = 0;
