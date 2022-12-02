@@ -45,3 +45,24 @@ void displayScore()
 	gotoxy(WIDTH + 5, 2);
 	cout << "Your score: " << score;
 }
+
+// Show menu at the end of the game
+
+void showEndMenu()
+{
+	system("cls");
+	gotoxy(0, 0);
+	cout << "End game!" << endl;
+	cout << "Your score: " << score << endl;
+	cout << "Do you want to play again ([y]/[n]): ";
+	char option;
+	cin >> option;
+	option = tolower(option);
+	if (option == 'y')
+	{
+		resetSnake();
+		startGame();
+	}
+	else if (option == 'n')
+		exit(1);
+}
